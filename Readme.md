@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм»
 
 * Студент: [Григорий Плаксин](https://up.htmlacademy.ru/javascript/26/user/2139941).
-* Наставник: `Сергей Карпов`(https://htmlacademy.ru/profile/id518893).
+* Наставник: [Сергей Карпов] (https://htmlacademy.ru/profile/id518893).
 
 ---
 
