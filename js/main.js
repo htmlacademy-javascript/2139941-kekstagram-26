@@ -14,7 +14,7 @@ vozvratchisla(2,5)
 
 function examination(lineNumber, maximumLength)
 {
-    let comparison=lineNumber<maximumLength
+    let comparison=lineNumber<=maximumLength
     return comparison
 }
 
