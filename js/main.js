@@ -3,8 +3,8 @@ function vozvratchisla(from, before)
 { 
     let proverka
      if (from>NUMBOR || before<NUMBOR )
-     {proverka = 'Нет такого числа в диопозоне'}
-     else {proverka = 'Число есть в диопозоне, '+ NUMBOR}
+     {proverka = 'Нет такого числа в диапазоне'}
+     else {proverka = 'Число есть в диапазоне, '+ NUMBOR}
 return proverka
 }
 vozvratchisla(2,5)
