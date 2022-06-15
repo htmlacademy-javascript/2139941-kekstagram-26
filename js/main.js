@@ -30,44 +30,44 @@ const  creatingNewId = function(){
 };
 const creatingNewUrl = function(){
   for(let i=0;i<=24;i++){
-  userProfile[i].url = (`photos/${i+1}.jpg`);}
+    userProfile[i].url = (`photos/${i+1}.jpg`);}
   return userProfile;
 };
 const creatingNewDescription = function(){
   for(let i=0;i<=24;i++){
     userProfile[i].DESCRIPTION = (DESCRIPTION[i]);}
-      return userProfile;
+  return userProfile;
 };
 const creatingNewLikes= function(){
   for(let i=0;i<=24;i++){
     userProfile[i].likes = (earchRandomNumber(15,200));}
-      return userProfile;
+  return userProfile;
 };
 const comments = [];
 const creatingCommentsId = function(){
   for(let i=0;i<=24;i++){
     comments.push({id : (3*i+1)*earchRandomNumber(23,25)});}
-      return comments;
+  return comments;
 };
 
 const creatingCommentsAvatar = function(){
   for(let i=0;i<=24;i++){
     comments[i].avatar =(`img/avatar-${earchRandomNumber(1,6)}.svg`);}
-      return comments;};
+  return comments;};
 const creatingCommentsMessage = function(){
   for(let i=0;i<=24;i++){
     comments[i].MESSAGE =(MESSAGE[(earchRandomNumber(1,6)-1)]);}
-      return comments;
+  return comments;
 };
 const creatingCommentsName = function(){
   for(let i=0;i<=24;i++){
     comments[i].NAME =(NAME[(earchRandomNumber(1,8)-1)]);}
-      return comments;
+  return comments;
 };
 const creatingNewComments = function(){
   for(let i=0;i<=24;i++){
     userProfile[i].comments =(comments[i]);}
-      return userProfile;};
+  return userProfile;};
 const creationUserProfile = function(){
   creatingNewId();
   creatingNewUrl();
