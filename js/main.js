@@ -61,8 +61,8 @@ const sortingRandomNumber = function() {
 };
 
 const creationPhotoInformation = function() {
-  for (let j = 0; j <= 24; j++) {  
-    const BLACK_BOX = [];
+  const BLACK_BOX = [];
+  for (let j = 0; j <= 24; j++) {
     BLACK_BOX.push({id : j + 1});
     BLACK_BOX.sort(sortingRandomNumber);}
   for (let i = 0; i <= 24; i++) {
