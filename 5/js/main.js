@@ -62,13 +62,14 @@ const sortingRandomNumber = function() {
 
 const creationPhotoInformation = function() {
   const BLACK_BOX = [];
+  for (let j = 0; j <= 24; j++) {
+    BLACK_BOX.push({id : j + 1});
+    BLACK_BOX.sort(sortingRandomNumber);}
   for (let i = 0; i <= 24; i++) {
     photoInformation.push({id : i + 1});
     photoInformation[i].url = (`photos/${i + 1}.jpg`);
     photoInformation[i].description = (POST_DESCRIPTIONS[i]);
     photoInformation[i].likes = (generateRandomInteger(15,200));
-    BLACK_BOX.push({id : i + 1});
-    BLACK_BOX.sort(sortingRandomNumber);
     comments.push(BLACK_BOX[i]);
     comments[i].avatar = (`img/avatar-${generateRandomInteger(1,6)}.svg`);
     comments[i].message = (POST_MESSAGES[(generateRandomInteger(1,6) - 1)]);
