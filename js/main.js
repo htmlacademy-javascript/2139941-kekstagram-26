@@ -45,39 +45,55 @@ const POST_DESCRIPTIONS = [
   'Неуловимый',
 ];
 
-const comments = [];
-
-const photoInformation = [];
-
+const photoInformation = []; // массив для сбора данных по фото
+const BLACK_BOX = []; // место хранения промежуточных данных
+const comments = []; // массив дл я сбора данных по коментариям
 function generateRandomInteger (from, to) {
   if (from > to) {
     [from, to] = [to, from];
   }
   return Math.floor(Math.random() * ((to + 1) - from) + from);
-}
+}   // генератор случайных чисел
 
 const sortingRandomNumber = function() {
   return Math.random() - 0.5;
-};
+}; // генератор числа для сортировки
 
-const creationPhotoInformation = function() {
-  const BLACK_BOX = [];
-  for (let j = 0; j <= 24; j++) {
-    BLACK_BOX.push({id : j + 1});
-    BLACK_BOX.sort(sortingRandomNumber);}
-  for (let i = 0; i <= 24; i++) {
-    photoInformation.push({id : i + 1});
-    photoInformation[i].url = (`photos/${i + 1}.jpg`);
-    photoInformation[i].description = (POST_DESCRIPTIONS[i]);
-    photoInformation[i].likes = (generateRandomInteger(15,200));
-    comments.push(BLACK_BOX[i]);
-    comments[i].avatar = (`img/avatar-${generateRandomInteger(1,6)}.svg`);
-    comments[i].message = (POST_MESSAGES[(generateRandomInteger(1,6) - 1)]);
-    comments[i].name = (USER_NAMES[(generateRandomInteger(1,8) - 1)]);
-    photoInformation[i].comments = comments[i];}
+const creationPhotoInformation = function(index, namber) {
+  photoInformation.push({id : namber});
+  photoInformation[index].url = (`photos/${namber}.jpg`);
+  photoInformation[index].description = (POST_DESCRIPTIONS[generateRandomInteger(0,24)]);
+  photoInformation[index].likes = (generateRandomInteger(15, 200));
   return photoInformation;
-};
-creationPhotoInformation();
+}; // функция для генерации данных для фото
+
+const creatingStorageLocation = function(index) {
+  BLACK_BOX.push({id : index + 1});
+  BLACK_BOX.sort(sortingRandomNumber);
+  return BLACK_BOX;
+};// функция для сортировки айди, чтобы и не повторялись и  были случайными
+
+const creationNewComment = function(index){
+  comments.push(BLACK_BOX[index]);
+  comments[index].avatar = (`img/avatar-${generateRandomInteger(1, 6)}.svg`);
+  comments[index].message = (POST_MESSAGES[(generateRandomInteger(1, 6) - 1)]);
+  comments[index].name = (USER_NAMES[(generateRandomInteger(1, 8) - 1)]);
+  return comments;
+}; // функция для генерации данных для коментария
+
+Array.from({length: 25},function creationPhotoInformations() {
+  creationPhotoInformation(photoInformation.length, photoInformation.length + 1);}); // генерация в photoInformation массива из 25, фотографий
+
+Array.from({length: 25},function creatingTemporaryStorage() {
+  creatingStorageLocation(BLACK_BOX.length);}); // генерация в BLACK_BOX 25 id и сортировка их в случайном порядке
+
+Array.from({length: 25},function creationNewComments() {
+  creationNewComment(comments.length);}); // генерация в comments массив из 25 коментариев
+
+const arrPhotoInformations = photoInformation.map((el, i) => {
+  return {...el, comments: comments[i] };
+}); // создание массива с данными и фото и коментария к ней, хранится в arrPhotoInformations    сам пока не изучил map и spread operator
+// сегодня буду читать о нем, это мне  подсказали не знал как без фор скрестить 2 массива
 
 /*
 function examination(lineNumber, maximumLength)
