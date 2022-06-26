@@ -16,4 +16,4 @@ const commentsLength = photos[0].comments;
 
 comments.textContent = commentsLength.length;
 
-export const picture = document.createDocumentFragment('picture');
+export const picture = document.createDocumentFragment(template);
