@@ -2,18 +2,20 @@ import {photos} from './data.js';
 
 const template = document.querySelector('#picture').content;
 
-const img = template.querySelector('.picture__img');
+const a = template.querySelector('.picture')
 
-img.src = photos[0].url;
+const img = template.querySelector('.picture__img');
 
 const likes = template.querySelector('.picture__likes');
 
-likes.textContent = photos[0].likes;
-
 const comments = template.querySelector('.picture__comments');
 
-const commentsLength = photos[0].comments;
-
-comments.textContent = commentsLength.length;
-
-export const picture = document.createDocumentFragment('picture');
+export const displayUserPhotos = (Array) => {
+  likes.textContent = Array.likes;
+  img.src = Array.url;
+  const commentsLength = Array.comments;
+  comments.textContent = commentsLength.length;
+  const fragment = document.createDocumentFragment();
+  fragment.appendChild(a);
+  return fragment
+};
