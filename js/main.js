@@ -1,7 +1,7 @@
 import {generateArray} from './util.js';
 import {MAX_LENGHT_PHOTOS, createPhotoRecord} from './data.js'
 import {displayUserPhotos} from './picture.js';
-import {displayBigPhoto} from './big_picture.js';
+//import {displayBigPhoto} from './big_picture.js';
 
 document
 .querySelector('.pictures.container')
@@ -10,5 +10,4 @@ document
     document.querySelector('#picture')
   ) );
 
-displayBigPhoto(generateArray(MAX_LENGHT_PHOTOS, createPhotoRecord))
-
+//displayBigPhoto(generateArray(MAX_LENGHT_PHOTOS, createPhotoRecord))

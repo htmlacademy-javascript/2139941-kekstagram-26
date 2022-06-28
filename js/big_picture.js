@@ -22,7 +22,7 @@ const makeBigPhotoFromItem = (item) => {
   setElementText(document.querySelector('.comments-count'),comments.length);
   setElementText(document.querySelector('.social__caption'),description);
 };
-console.log('.big-picture__img')
+
 export const displayBigPhoto = (item) => {
   document.querySelector('.pictures.container').addEventListener('click',function (evt) {
   evt.preventDefault();
@@ -35,7 +35,7 @@ export const displayBigPhoto = (item) => {
 
 document.addEventListener('keydown', function (evt) {
   if (evt.keyCode === 27) {
-    document.querySelector('.big-picture').classList.add('hidden');
+    displayElementadd('.big-picture','hidden');
     displayElementremove('.body', '.modal-open')}});
 document.querySelector('.big-picture__cancel').addEventListener('click', function () {
   displayElementadd('.big-picture','hidden');
