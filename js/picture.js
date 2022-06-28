@@ -1,5 +1,5 @@
 const setPhotoUrlByid = (id) => {
-  `photos/${id}.png`;
+  `photos/${id}.ping`;
 };
 
 const setAnchorHref = (a, href) => {
