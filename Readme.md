@@ -49,3 +49,32 @@ git clone SSH-адрес_вашего_форка
 <a href="https://htmlacademy.ru/intensive/javascript"><img align="left" width="50" height="50" alt="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/javascript/logo-for-github-2.png"></a>
 
 Репозиторий создан для обучения на интенсивном онлайн‑курсе «[JavaScript. Профессиональная разработка веб-интерфейсов](https://htmlacademy.ru/intensive/javascript)» от [HTML Academy](https://htmlacademy.ru).
+
+## Рекомендации по модулям
+
+Пообещайте себе, что модуль `main.js` и только он будет обращаться к переменной `document`. Объясните себе это неудобство тем, что только `main.js` фактически подключен к index.html документу. Остальные модуль оказываются привлечены к работе косвенно, по желанию `main.js`.
+
+Пообещайте себе, что любой модуль, приложит все усилия, чтобы не иметь кода на верхнем уровне. Вот два примера
+
+```js
+//панковский безолаберный модуль punk.js
+import {userInfo} from './user-info.js';
+const template = document.querySelector('#profile');
+const avatar = template.querySelector('.avatar');
+avatar.src = userInfo.photo;
+export avatar;
+```
+
+лучше обернуть вычисления в функцию, которую экспортировать
+
+```js
+// модуль пионер-всем-пример pioneer.js
+export const getAvatar = (userInfo, template)=>{
+  const result = template.cloneNode(true);
+  const avatar = result.querySelector('.avatar');
+  avatar.src = userInfo.photo;
+  return result;
+}
+```
+
+таким образом вы отправите процесс общения с `document`, а пионерский модуль можно будет использовать в разных документах html, ведь он не будет зациклен, на том, чтобы шаблон был с `id=profile`

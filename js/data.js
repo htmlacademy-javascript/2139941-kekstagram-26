@@ -1,4 +1,4 @@
-import {generateRandomInteger} from './util.js';
+import {generateRandomInteger, getRandomItem, generateArray} from './util.js';
 const USER_NAMES = [
   'Вася',
   'Кекс',
@@ -46,28 +46,23 @@ const POST_DESCRIPTIONS = [
   'Неуловимый',
 ];
 
-const MAX_LENGHT_PHOTOS = 25;
+export const MAX_LENGTH_PHOTOS = 25;
 
-const gerRandomItem = (items) => items[generateRandomInteger(0, items.length)];
 
-const generateArray = (length, generator) => Array.from({length},(_,ix) => generator(ix));
+const creationNewComment = (index) => ({
+  id: index * 10000 + generateRandomInteger(1,999),
+  avatar: (`img/avatar-${generateRandomInteger(1, 7)}.svg`),
+  message: getRandomItem(POST_MESSAGES),
+  name: getRandomItem(USER_NAMES),
+});
 
-const creationNewComment = (index) => {
-  return {
-    id: index * 10000 + generateRandomInteger(1,999),
-    avatar: (`img/avatar-${generateRandomInteger(1, 7)}.svg`),
-    message: gerRandomItem(POST_MESSAGES),
-    name: gerRandomItem(USER_NAMES),
-  };};
-
-const createPhotoRecord = (index) => {
+export const createPhotoRecord = (index) => {
   const number = index + 1;
   return {
     id: number,
     url: (`photos/${number}.jpg`),
-    description:  gerRandomItem(POST_DESCRIPTIONS),
+    description:  getRandomItem(POST_DESCRIPTIONS),
     likes: (generateRandomInteger(15, 201)),
     comments: generateArray(generateRandomInteger(1,25),creationNewComment),
   };};
 
-export const photos =  generateArray(MAX_LENGHT_PHOTOS,createPhotoRecord);
