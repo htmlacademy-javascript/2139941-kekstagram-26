@@ -1,5 +1,4 @@
-import './util';
-import {generateRandomInteger} from './util';
+import {generateRandomInteger} from './util.js';
 const USER_NAMES = [
   'Вася',
   'Кекс',
@@ -71,6 +70,4 @@ const createPhotoRecord = (index) => {
     comments: generateArray(generateRandomInteger(1,25),creationNewComment),
   };};
 
- const photos =  generateArray(MAX_LENGHT_PHOTOS,createPhotoRecord);
-
-export {photos} from './main.js'
+export const photos =  generateArray(MAX_LENGHT_PHOTOS,createPhotoRecord);
