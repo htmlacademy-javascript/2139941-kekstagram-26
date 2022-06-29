@@ -6,11 +6,12 @@ const setAnchorHref = (a, href) => {
 a.href = href;
 };
 
-const setImgSrc = (img, src) =>{
+export const setImgSrc = (img, src, text) =>{
 img.src = src;
+img.alt = text
 };
 
-const setElementText = (element, text) => {
+export const setElementText = (element, text) => {
 element.innerText = text;
 };
 
@@ -22,6 +23,7 @@ description,
 likes,
 comments
 } = item;
+template.querySelector('.picture__img').classList.add(id)
 setAnchorHref(template.querySelector('.picture'),setPhotoUrlByid);
 setImgSrc(template.querySelector('.picture__img'),url);
 setElementText(template.querySelector('.picture__likes'),likes);
