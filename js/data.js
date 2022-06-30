@@ -1,4 +1,4 @@
-import {generateRandomInteger} from './util.js';
+import {generateRandomInteger, gerRandomItem, generateArray} from './util.js';
 const USER_NAMES = [
   'Вася',
   'Кекс',
@@ -46,11 +46,7 @@ const POST_DESCRIPTIONS = [
   'Неуловимый',
 ];
 
-const MAX_LENGHT_PHOTOS = 25;
-
-const gerRandomItem = (items) => items[generateRandomInteger(0, items.length)];
-
-const generateArray = (length, generator) => Array.from({length},(_,ix) => generator(ix));
+export const MAX_LENGHT_PHOTOS = 25;
 
 const creationNewComment = (index) => {
   return {
@@ -60,7 +56,7 @@ const creationNewComment = (index) => {
     name: gerRandomItem(USER_NAMES),
   };};
 
-const createPhotoRecord = (index) => {
+export const createPhotoRecord = (index) => {
   const number = index + 1;
   return {
     id: number,
@@ -68,6 +64,5 @@ const createPhotoRecord = (index) => {
     description:  gerRandomItem(POST_DESCRIPTIONS),
     likes: (generateRandomInteger(15, 201)),
     comments: generateArray(generateRandomInteger(1,25),creationNewComment),
-  };};
+  }};
 
-export const photos =  generateArray(MAX_LENGHT_PHOTOS,createPhotoRecord);
