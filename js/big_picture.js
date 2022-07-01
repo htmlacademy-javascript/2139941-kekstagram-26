@@ -1,5 +1,6 @@
-import {setImgSrc,setElementText} from './picture.js';
-
+import { setImgSrc, setElementText } from './picture.js';
+import {MAX_LENGHT_PHOTOS} from './data.js'
+import {isEscapeKey} from './util.js'
 const displayElementremove = (element, display) => {
   document.querySelector(element).classList.remove(display)
 };
@@ -8,52 +9,62 @@ const displayElementadd = (element, display) => {
 };
 const makeBigPhotoFromItem = (item) => {
   const {
-  id,
-  url,
-  description,
-  likes,
-  comments
+    id,
+    url,
+    description,
+    likes,
+    comments
   } = item;
-  setImgSrc(document.querySelector('.big-picture__img'),url);
-  setElementText(document.querySelector('.likes-count'),likes);
-  setElementText(document.querySelector('.comments-count'),comments.length);
-  setElementText(document.querySelector('.social__caption'),description);
+  setImgSrc(document.querySelector('.big-picture__img').children[0], url);
+  setElementText(document.querySelector('.likes-count'), likes);
+  setElementText(document.querySelector('.comments-count'), comments.length);
+  setElementText(document.querySelector('.social__caption'), description);
 };
 
-const commentBigPhoto = (item) => {
-const {
-id,
-avatar,
-message,
-name
-} = item;
-setImgSrc(document.querySelector('.social__picture'),avatar, name);
-setElementText(document.querySelector('.social__text'),message);
+const commentBigPhoto = (template, item) => {
+  const {
+    id,
+    avatar,
+    message,
+    name
+  } = item;
+  setImgSrc(template.querySelector('.social__picture'), avatar, name);
+  setElementText(template.querySelector('.social__text'), message);
+  return template
 };
-const createCollectComment  = (item) => {
-  commentBigPhoto(document.querySelector('li','.social__comment').cloneNode(true), item)
+const createCollectcomment = (template) => (fragment, item) => {
+  fragment.append(commentBigPhoto(template.content.cloneNode(true), item))
+  return fragment
 };
 
-const displayUserComment = (item) => item.reduce(createCollectComment(item),document.createDocumentFragment());
+const displayUsercomment = (item, template) => item.reduce(createCollectcomment(template), document.createDocumentFragment());
 
 export const displayBigPhoto = (item) => {
-  document.querySelector('.pictures.container').addEventListener('click',function (evt) {
-  evt.preventDefault();
-  const index = document.querySelector('.picture__img').id - 1
-  displayElementremove('.big-picture','hidden');
-  makeBigPhotoFromItem(item[index]);
-  displayUserComment(item[index].comments)
-  displayElementadd('.social__comment-count','hidden');
-  displayElementadd('.comments-loader','hidden');
-  displayElementadd('body', 'modal-open');
-})};
+  const photoButton = document.querySelectorAll('.picture')
+  for (let j = 0; j < MAX_LENGHT_PHOTOS; j++) {
+    photoButton[j].addEventListener('click', function (evt) {
+      evt.preventDefault();
+      displayElementremove('.big-picture', 'hidden');
+      makeBigPhotoFromItem(item[j]);
+      document.querySelector('.social__comments').append(displayUsercomment(item[j].comments, document.querySelector('#social')))
+      displayElementadd('.social__comment-count','hidden');
+      displayElementadd('.comments-loader','hidden');
+      displayElementadd('body', 'modal-open');
+    })
+  }
+};
 
 export const removeBigPhoto = () => {
-document.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === 27) {
-    displayElementadd('.big-picture','hidden');
-    displayElementremove('body', 'modal-open')}});
-document.querySelector('.big-picture__cancel').addEventListener('click', function () {
-  displayElementadd('.big-picture','hidden');
-  displayElementremove('body', 'modal-open');
-});};
+  document.addEventListener('keydown', function (evt) {
+    if (isEscapeKey(evt)) {
+      displayElementadd('.big-picture', 'hidden');
+      displayElementremove('body', 'modal-open')
+      document.querySelectorAll('.social__comment').forEach(e=>e.remove())
+    }
+  });
+  document.querySelector('.big-picture__cancel').addEventListener('click', function () {
+    displayElementadd('.big-picture', 'hidden');
+    displayElementremove('body', 'modal-open');
+    document.querySelectorAll('.social__comment').forEach(e=>e.remove())
+  })
+};
