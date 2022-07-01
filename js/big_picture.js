@@ -46,25 +46,28 @@ export const displayBigPhoto = (item) => {
       evt.preventDefault();
       displayElementremove('.big-picture', 'hidden');
       makeBigPhotoFromItem(item[j]);
-      document.querySelector('.social__comments').append(displayUsercomment(item[j].comments, document.querySelector('#social')))
-      displayElementadd('.social__comment-count','hidden');
-      displayElementadd('.comments-loader','hidden');
+      document.querySelector('.social__comments')
+      .append(displayUsercomment(item[j].comments, document.querySelector('#social')))
       displayElementadd('body', 'modal-open');
     })
   }
 };
-
-export const removeBigPhoto = () => {
+const closeBigPhoto = () => {
   document.addEventListener('keydown', function (evt) {
     if (isEscapeKey(evt)) {
       displayElementadd('.big-picture', 'hidden');
       displayElementremove('body', 'modal-open')
       document.querySelectorAll('.social__comment').forEach(e=>e.remove())
-    }
-  });
+    }})}
+const closeBigPhoto2 = () => {
   document.querySelector('.big-picture__cancel').addEventListener('click', function () {
     displayElementadd('.big-picture', 'hidden');
     displayElementremove('body', 'modal-open');
     document.querySelectorAll('.social__comment').forEach(e=>e.remove())
-  })
-};
+ })}
+export const removeBigPhoto = () => {
+  closeBigPhoto()
+  document.removeEventListener('keydown', closeBigPhoto())
+  closeBigPhoto2()
+  document.querySelector('.big-picture__cancel').removeEventListener('click', closeBigPhoto2())
+}
