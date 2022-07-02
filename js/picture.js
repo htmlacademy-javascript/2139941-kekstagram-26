@@ -1,14 +1,15 @@
 const setPhotoUrlByid = (id) => {
-  `photos/${id}.ping`;
+  `id`;
 };
 
 const setAnchorHref = (a, href) => {
 a.href = href;
 };
 
-export const setImgSrc = (img, src, text) =>{
+export const setImgSrc = (img, src, text, id) =>{
 img.src = src;
 img.alt = text
+img.id = id
 };
 
 export const setElementText = (element, text) => {
@@ -23,9 +24,8 @@ description,
 likes,
 comments
 } = item;
-template.querySelector('.picture__img').classList.add(id)
 setAnchorHref(template.querySelector('.picture'),setPhotoUrlByid);
-setImgSrc(template.querySelector('.picture__img'),url);
+setImgSrc(template.querySelector('.picture__img'),url, description, id);
 setElementText(template.querySelector('.picture__likes'),likes);
 setElementText(template.querySelector('.picture__comments'),comments.length);
 return template
