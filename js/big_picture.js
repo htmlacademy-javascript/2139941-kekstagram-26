@@ -1,10 +1,12 @@
 import { setImgSrc, setElementText } from './picture.js';
-import {MAX_LENGHT_PHOTOS} from './data.js'
-import {isEscapeKey} from './util.js'
-const displayElementremove = (element, display) => {
+import { MAX_LENGTH_PHOTOS } from './data.js'
+import { isEscapeKey } from './util.js'
+import { displayGroupPhotos, uploadingBatchPhotos } from './comments.js'
+
+export const displayElementRemove = (element, display) => {
   document.querySelector(element).classList.remove(display)
 };
-const displayElementadd = (element, display) => {
+export const displayElementAdd = (element, display) => {
   document.querySelector(element).classList.add(display)
 };
 const makeBigPhotoFromItem = (item) => {
@@ -30,44 +32,61 @@ const commentBigPhoto = (template, item) => {
   } = item;
   setImgSrc(template.querySelector('.social__picture'), avatar, name);
   setElementText(template.querySelector('.social__text'), message);
+  template.querySelector('.social__comment').classList.add('hidden')
   return template
 };
-const createCollectcomment = (template) => (fragment, item) => {
+const createCollectComment = (template) => (fragment, item) => {
   fragment.append(commentBigPhoto(template.content.cloneNode(true), item))
   return fragment
 };
 
-const displayUsercomment = (item, template) => item.reduce(createCollectcomment(template), document.createDocumentFragment());
-
+const displayUserComment = (item, template) => item.reduce(createCollectComment(template), document.createDocumentFragment());
+let showCommentHanler = null
 export const displayBigPhoto = (item) => {
   const photoButton = document.querySelectorAll('.picture')
-  for (let j = 0; j < MAX_LENGHT_PHOTOS; j++) {
+  for (let j = 0; j < photoButton.length; j++) {
     photoButton[j].addEventListener('click', function (evt) {
       evt.preventDefault();
-      displayElementremove('.big-picture', 'hidden');
+      displayElementRemove('.big-picture', 'hidden');
       makeBigPhotoFromItem(item[j]);
       document.querySelector('.social__comments')
-      .append(displayUsercomment(item[j].comments, document.querySelector('#social')))
-      displayElementadd('body', 'modal-open');
+        .append(displayUserComment(item[j].comments, document.querySelector('#social')));
+      displayElementAdd('body', 'modal-open');
+      showCommentHanler = uploadingBatchPhotos(item[j].comments);
+      addDiologClose();
     })
   }
 };
+let removeBigPhoto = null
+let removeBigPhoto2 = null
+const removeEventListener = () => {
+  document.removeEventListener('keydown', removeBigPhoto2)
+  document.querySelector('.big-picture__cancel').removeEventListener('click', removeBigPhoto)
+}
+removeBigPhoto = () => {
+    displayElementAdd('.big-picture', 'hidden');
+    displayElementRemove('body', 'modal-open');
+    document.querySelectorAll('.social__comment').forEach(e => e.remove());
+if(typeof showCommentHanler === 'function') {
+  showCommentHanler()
+};
+    removeEventListener();
+}
+removeBigPhoto2 = function (evt) {
+  if (isEscapeKey(evt)) {
+    removeBigPhoto()
+  }
+}
+
 const closeBigPhoto = () => {
-  document.addEventListener('keydown', function (evt) {
-    if (isEscapeKey(evt)) {
-      displayElementadd('.big-picture', 'hidden');
-      displayElementremove('body', 'modal-open')
-      document.querySelectorAll('.social__comment').forEach(e=>e.remove())
-    }})}
+  document.addEventListener('keydown', removeBigPhoto2)
+}
+
 const closeBigPhoto2 = () => {
-  document.querySelector('.big-picture__cancel').addEventListener('click', function () {
-    displayElementadd('.big-picture', 'hidden');
-    displayElementremove('body', 'modal-open');
-    document.querySelectorAll('.social__comment').forEach(e=>e.remove())
- })}
-export const removeBigPhoto = () => {
-  closeBigPhoto()
-  document.removeEventListener('keydown', closeBigPhoto())
-  closeBigPhoto2()
-  document.querySelector('.big-picture__cancel').removeEventListener('click', closeBigPhoto2())
+  document.querySelector('.big-picture__cancel').addEventListener('click', removeBigPhoto)
+}
+
+export const addDiologClose = () => {
+  closeBigPhoto();
+  closeBigPhoto2();
 }
