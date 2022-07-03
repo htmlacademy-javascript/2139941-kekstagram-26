@@ -1,7 +1,7 @@
 import { setImgSrc, setElementText } from './picture.js';
-import {MAX_LENGHT_PHOTOS} from './data.js';
+import {MAX_LENGHT_PHOTOS as MAX_LENGTH_PHOTOS} from './data.js';
 import {isEscapeKey} from './util.js';
-const displayElementremove = (element, display) => {
+const displayElementRemove = (element, display) => {
   document.querySelector(element).classList.remove(display);
 };
 const displayElementadd = (element, display) => {
@@ -32,22 +32,22 @@ const commentBigPhoto = (template, item) => {
   setElementText(template.querySelector('.social__text'), message);
   return template;
 };
-const createCollectcomment = (template) => (fragment, item) => {
+const createCollectComment = (template) => (fragment, item) => {
   fragment.append(commentBigPhoto(template.content.cloneNode(true), item));
   return fragment;
 };
 
-const displayUsercomment = (item, template) => item.reduce(createCollectcomment(template), document.createDocumentFragment());
+const displayUserComment = (item, template) => item.reduce(createCollectComment(template), document.createDocumentFragment());
 
 export const displayBigPhoto = (item) => {
   const photoButton = document.querySelectorAll('.picture');
-  for (let j = 0; j < MAX_LENGHT_PHOTOS; j++) {
+  for (let j = 0; j < MAX_LENGTH_PHOTOS; j++) {
     photoButton[j].addEventListener('click', (evt) => {
       evt.preventDefault();
-      displayElementremove('.big-picture', 'hidden');
+      displayElementRemove('.big-picture', 'hidden');
       makeBigPhotoFromItem(item[j]);
       document.querySelector('.social__comments')
-        .append(displayUsercomment(item[j].comments, document.querySelector('#social')));
+        .append(displayUserComment(item[j].comments, document.querySelector('#social')));
       displayElementadd('body', 'modal-open');
     });
   }
@@ -56,13 +56,13 @@ const closeBigPhoto = () => {
   document.addEventListener('keydown', (evt) => {
     if (isEscapeKey(evt)) {
       displayElementadd('.big-picture', 'hidden');
-      displayElementremove('body', 'modal-open');
+      displayElementRemove('body', 'modal-open');
       document.querySelectorAll('.social__comment').forEach((e)=>e.remove());
     }});};
 const closeBigPhoto2 = () => {
   document.querySelector('.big-picture__cancel').addEventListener('click', () => {
     displayElementadd('.big-picture', 'hidden');
-    displayElementremove('body', 'modal-open');
+    displayElementRemove('body', 'modal-open');
     document.querySelectorAll('.social__comment').forEach((e)=>e.remove());
   });};
 export const removeBigPhoto = () => {
