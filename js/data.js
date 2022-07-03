@@ -46,7 +46,7 @@ const POST_DESCRIPTIONS = [
   'Неуловимый',
 ];
 
-export const MAX_LENGHT_PHOTOS = 25;
+export const MAX_LENGTH_PHOTOS = 25;
 
 const creationNewComment = (index) => {
   return {
