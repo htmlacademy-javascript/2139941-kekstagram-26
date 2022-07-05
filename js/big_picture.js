@@ -1,7 +1,6 @@
 import { setImgSrc, setElementText } from './picture.js';
-import { MAX_LENGTH_PHOTOS } from './data.js'
 import { isEscapeKey } from './util.js'
-import { displayGroupPhotos, uploadingBatchPhotos } from './comments.js'
+import { uploadingBatchPhotos } from './comments.js'
 
 export const displayElementRemove = (element, display) => {
   document.querySelector(element).classList.remove(display)
@@ -41,7 +40,7 @@ const createCollectComment = (template) => (fragment, item) => {
 };
 
 const displayUserComment = (item, template) => item.reduce(createCollectComment(template), document.createDocumentFragment());
-let showCommentHanler = null
+let showCommentHangler = null
 export const displayBigPhoto = (item) => {
   const photoButton = document.querySelectorAll('.picture')
   for (let j = 0; j < photoButton.length; j++) {
@@ -52,8 +51,8 @@ export const displayBigPhoto = (item) => {
       document.querySelector('.social__comments')
         .append(displayUserComment(item[j].comments, document.querySelector('#social')));
       displayElementAdd('body', 'modal-open');
-      showCommentHanler = uploadingBatchPhotos(item[j].comments);
-      addDiologClose();
+      showCommentHangler = uploadingBatchPhotos(item[j].comments);
+      addDialogClose();
     })
   }
 };
@@ -64,13 +63,13 @@ const removeEventListener = () => {
   document.querySelector('.big-picture__cancel').removeEventListener('click', removeBigPhoto)
 }
 removeBigPhoto = () => {
-    displayElementAdd('.big-picture', 'hidden');
-    displayElementRemove('body', 'modal-open');
-    document.querySelectorAll('.social__comment').forEach(e => e.remove());
-if(typeof showCommentHanler === 'function') {
-  showCommentHanler()
-};
-    removeEventListener();
+  displayElementAdd('.big-picture', 'hidden');
+  displayElementRemove('body', 'modal-open');
+  document.querySelectorAll('.social__comment').forEach(e => e.remove());
+  if (typeof showCommentHangler === 'function') {
+    showCommentHangler()
+  };
+  removeEventListener();
 }
 removeBigPhoto2 = function (evt) {
   if (isEscapeKey(evt)) {
@@ -86,7 +85,7 @@ const closeBigPhoto2 = () => {
   document.querySelector('.big-picture__cancel').addEventListener('click', removeBigPhoto)
 }
 
-export const addDiologClose = () => {
+const addDialogClose = () => {
   closeBigPhoto();
   closeBigPhoto2();
 }

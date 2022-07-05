@@ -6,7 +6,7 @@ export function generateRandomInteger (from, to) {
     throw new Error(`not a number ${to}`);
   }
   if(from < 0){
-    throw new Error(`from must be possitive ${from}`);
+    throw new Error(`from must be positive ${from}`);
   }
   if(from > to){
     throw new Error(`from must be in order ${from},${to}`);

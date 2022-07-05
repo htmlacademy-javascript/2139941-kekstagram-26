@@ -20,17 +20,16 @@ export const uploadingBatchPhotos = (array) => {
 
 const createRemove = (counter, array) => (evt) => {
   let box = counter()
-  let boxes = array.length
-  if (box < boxes) {console.log(box)
+  if (box < array.length) {
     for (let i = 0; i < box; i++) {
       document.querySelectorAll('.social__comment')[i].classList.remove('hidden')
     };
     document.querySelector('.comments-count2').textContent = `${box} из`;
     displayElementRemove('.comments-loader', 'hidden')
   }
-  if (box >= boxes) {console.log(box)
-    document.querySelector('.comments-count2').textContent = `${boxes} из`;
-    for (let i = 0; i < boxes; i++) {
+  else {
+    document.querySelector('.comments-count2').textContent = `${array.length} из`;
+    for (let i = 0; i < array.length; i++) {
       document.querySelectorAll('.social__comment')[i].classList.remove('hidden')
     };
     displayElementAdd('.comments-loader', 'hidden')

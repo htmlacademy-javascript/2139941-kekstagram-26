@@ -1,3 +1,4 @@
+import { createSlider } from "./slider.js"
 export const effects = [
   'effects__preview--none',
   'effects__preview--chrome',
@@ -14,10 +15,11 @@ export const cleaningEffects = () => {
  export const replacingPhotoEffects = () =>{
   const elements = document.querySelectorAll('.effects__radio')
   for (let i = 0; i<effects.length; i++){
-    const element = elements[i]
+  const element = elements[i]
   element.addEventListener('click', function () {
     cleaningEffects()
 document.querySelector('.img-upload__preview').classList.add(effects[i])
+//createSlider(element, effects[i])
 })}}
 
 
