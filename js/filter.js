@@ -1,2 +1,6 @@
-//const fun () =>{
-//document.querySelector('.effect-level__value')}
+const filter = (array) => {
+array.sort()
+  array.filter()
+
+
+};
