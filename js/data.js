@@ -64,5 +64,5 @@ export const createPhotoRecord = (index) => {
     description:  gerRandomItem(POST_DESCRIPTIONS),
     likes: (generateRandomInteger(15, 201)),
     comments: generateArray(generateRandomInteger(1,25),creationNewComment),
-  }};
+  };};
 

@@ -53,7 +53,7 @@
 
                   <!-- Предварительный просмотр изображения -->
                   <div class="img-upload__preview">
-                    <img src="img/upload-default-image.jpg" alt="Предварительный просмотр фотографии">
+                    <img class="img-upload__preview2" src="img/upload-default-image.jpg" alt="Предварительный просмотр фотографии">
                   </div>
 
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->
@@ -118,7 +118,7 @@
                 <fieldset class="img-upload__text text">
                   <div class="img-upload__field-wrapper">
                     <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег"
-                    data-pristine-pattern='/^#[A_Za-zА-Яа-яЁё0-9]{1,19}/' >
+                    data-pristine-pattern='/^#[A_Za-zА-Яа-яЁё0-9]{1,19}/' max = '5' > >
                   </div>
                   <div class="img-upload__field-wrapper">
                     <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"
