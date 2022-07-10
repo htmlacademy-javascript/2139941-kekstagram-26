@@ -1,13 +1,25 @@
-const form2 = document.querySelector('.img-upload__form');
-const pristine = new Pristine(form2);
+const lineOfHash = "#dd1 #dd2 #input #value";
 
-form2.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+const reg = /#(A-Za-zа-яА-Я)+/;
+const createValidator = () => {
+  const alreadySeen = new Set();
+  return (token) => {
+    if (alreadySeen.has(token)) {
+      return false;
+    }
+    alreadySeen.add(token);
+    return reg.test(token);
+  };
+};
 
-  const isValid = pristine.validate();
-  if (isValid) {
-
-  } else {
-
+const validateAllHashTags = (line) => {
+  const tokens = line.split(" ");
+  const valid = tokens.length <= 5;
+  if(!valid){
+    return false;
   }
-});
+
+  return tokens.every(createValidator());
+};
+
+validateAllHashTags(lineOfHash)
