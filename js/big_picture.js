@@ -10,6 +10,8 @@ export const displayElementAdd = (element, display) => {
   document.querySelector(element).classList.add(display);
 };
 
+let removeBigPhoto = null;
+let removeBigPhoto2 = null;
 const closeBigPhoto = () => {
   document.addEventListener('keydown', removeBigPhoto2);
 };
@@ -58,7 +60,7 @@ let showCommentHangler = null;
 export const displayBigPhoto = (item) => {
   const photoButton = document.querySelectorAll('.picture');
   for (let j = 0; j < photoButton.length; j++) {
-    photoButton[j].addEventListener('click', function (evt) {
+    photoButton[j].addEventListener('click', (evt) => {
       evt.preventDefault();
       displayElementRemove('.big-picture', 'hidden');
       makeBigPhotoFromItem(item[j]);
@@ -71,8 +73,6 @@ export const displayBigPhoto = (item) => {
   }
 };
 
-let removeBigPhoto = null;
-let removeBigPhoto2 = null;
 const removeEventListener = () => {
   document.removeEventListener('keydown', removeBigPhoto2);
   document.querySelector('.big-picture__cancel').removeEventListener('click', removeBigPhoto);
@@ -81,7 +81,7 @@ const removeEventListener = () => {
 removeBigPhoto = () => {
   displayElementAdd('.big-picture', 'hidden');
   displayElementRemove('body', 'modal-open');
-  document.querySelectorAll('.social__comment').forEach(e => e.remove());
+  document.querySelectorAll('.social__comment').forEach((e) => e.remove());
   if (typeof showCommentHangler === 'function') {
     showCommentHangler();
   }

@@ -1,13 +1,5 @@
-const form2 = document.querySelector('.img-upload__form');
-const pristine = new Pristine(form2);
+focus blur
 
-form2.addEventListener('submit', (evt) => {
-  evt.preventDefault();
+split
 
-  const isValid = pristine.validate();
-  if (isValid) {
-
-  } else {
-
-  }
-});
+'/^#[A_Za-zА-Яа-яЁё0-9]{1,19}/'

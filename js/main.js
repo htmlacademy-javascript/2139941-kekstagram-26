@@ -8,6 +8,8 @@ import { replacingPhotoEffects } from './effects_photo.js';
 import { createSlider } from './slider.js';
 export const array = generateArray(MAX_LENGTH_PHOTOS, createPhotoRecord);
 
+const slider = document.querySelector('.effect-level__slider');
+createSlider(slider);
 document
   .querySelector('.pictures.container')
   .append(displayUserPhotos(array,
@@ -17,4 +19,5 @@ displayBigPhoto(array);
 uploadNewImage();
 rescalingPhoto(100);
 replacingPhotoEffects();
+
 
