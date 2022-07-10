@@ -1,16 +1,23 @@
-
-export const createSlider = (effect) => {
-  const slider = document.querySelector('.effect-level__slider');
+let slider = 0;
+export const createSlider = (element) => {
+  slider = element;
   noUiSlider.create(slider, {
+    animate: true,
     start: 1,
     range: {
       'min': 0,
       'max': 1,
     },
   });
-  if (effect === 'effects__preview--none') { slider.noUiSlider.destroy(); }
+  slider.noUiSlider.on('update', () => {
+    console.log(slider.noUiSlider.get());
+  });
+};
+export const dd = (effect) => {
+  if (effect === 'effects__preview--none') {  }
   if (effect === 'effects__preview--chrome') {
-    noUiSlider.create(slider, {
+    slider.noUiSlider.updateOptions({
+      animate: true,
       start: 1,
       connect: 'lower',
       range: {
@@ -33,7 +40,8 @@ export const createSlider = (effect) => {
     document.querySelector('.img-upload__preview').style.filter = `grayscale${slider.noUiSlider.get()}`;
   }
   if (effect === 'effects__preview--sepia') {
-    noUiSlider.create(slider, {
+    slider.noUiSlider.updateOptions({
+      animate: true,
       start: 1,
       connect: 'lower',
       range: {
@@ -56,7 +64,8 @@ export const createSlider = (effect) => {
     document.querySelector('.img-upload__preview').style.filter = `grayscale${slider.noUiSlider.get()}`;
   }
   if (effect === 'effects__preview--marvin') {
-    noUiSlider.create(slider, {
+    slider.noUiSlider.updateOptions({
+      animate: true,
       start: 100,
       connect: 'lower',
       range: {
@@ -79,7 +88,8 @@ export const createSlider = (effect) => {
     document.querySelector('.img-upload__preview').style.filter = `invert${slider.noUiSlider.get()}%`;
   }
   if (effect === 'effects__preview--phobos') {
-    noUiSlider.create(slider, {
+    slider.noUiSlider.updateOptions({
+      animate: true,
       start: 3,
       connect: 'lower',
       range: {
@@ -102,7 +112,8 @@ export const createSlider = (effect) => {
     document.querySelector('.img-upload__preview').style.filter = `blur${slider.noUiSlider.get()}px`;
   }
   if (effect === 'effects__preview--heat') {
-    noUiSlider.create(slider, {
+    slider.noUiSlider.updateOptions({
+      animate: true,
       start: 3,
       connect: 'lower',
       range: {
@@ -123,9 +134,8 @@ export const createSlider = (effect) => {
       }
     });
     document.querySelector('.img-upload__preview').style.filter = `brightness${slider.noUiSlider.get()}`;
+
   }
-  slider.noUiSlider.on('update', (...rest) => {
-    document.querySelector('.effect-level__value').value = slider.noUiSlider.get();
-  });
 };
+
 

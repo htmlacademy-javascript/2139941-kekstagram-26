@@ -2,6 +2,9 @@ import { displayElementRemove, displayElementAdd } from './big_picture.js';
 import { isEscapeKey } from './util.js';
 import { cleaningEffects } from './effects_photo.js';
 
+let removeEditWindow = null;
+let removeEditWindow2 = null;
+
 const closeEditWindow = () => {
   document.addEventListener('keydown', removeEditWindow);
 };
@@ -20,9 +23,6 @@ const openingUploadForm = () => {
   closeEditForm();
 };
 
-let removeEditWindow = null;
-let removeEditWindow2 = null;
-
 const removeEventListener = () => {
   document.addEventListener('keydown', removeEditWindow);
   document.querySelector('#upload-cancel').addEventListener('click', removeEditWindow2);
@@ -30,7 +30,6 @@ const removeEventListener = () => {
 removeEditWindow2 = () => {
   displayElementAdd('.img-upload__overlay', 'hidden');
   displayElementRemove('body', 'modal-open');
-  document.querySelector('.img-upload__preview2').src;
   cleaningEffects();
   removeEventListener();
 };
