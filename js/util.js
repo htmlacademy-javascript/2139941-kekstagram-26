@@ -18,8 +18,6 @@ export const gerRandomItem = (items) => items[generateRandomInteger(0, items.len
 
 export const generateArray = (length, generator) => Array.from({length},(_,ix) => generator(ix));
 
-export const isEscapeKey = (evt) => {
-  return evt.key === 'Escape';
-};
+export const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export const randomNumberFilter = () => { return Math.random() - 0, 5 }
+export const randomNumberFilter = () => (Math.random() - 0, 5);

@@ -18,18 +18,18 @@ const sortingDefaultPhoto = (array1) => {
 };
 
 const rr = (array, filter, mode) => {
-  document.querySelector(filter).addEventListener('click', (evt) => {
-    let arr = mode(array)
+  document.querySelector(filter).addEventListener('click', () => {
+    let arr = mode(array);
     document.querySelectorAll('.img-filters__button').forEach(n => n.classList.remove('img-filters__button--active'))
-    document.querySelector(filter).classList.add('img-filters__button--active')
-    return arr
-  })
+    document.querySelector(filter).classList.add('img-filters__button--active');
+    return arr;
+  });
 }
 
 export const filterUserPhoto = (array) => {
-  let arr = array
-  rr(array, '#filter-default', sortingDefaultPhoto)
-  rr(array, '#filter-random', filterRandomPhoto)
-  rr(array, '#filter-discussed', filterMostPopular)
-  return arr
-}
+  let arr = array;
+  rr(array, '#filter-default', sortingDefaultPhoto);
+  rr(array, '#filter-random', filterRandomPhoto);
+  rr(array, '#filter-discussed', filterMostPopular);
+  return arr;
+};

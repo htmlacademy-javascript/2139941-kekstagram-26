@@ -1,4 +1,4 @@
-const lineOfHash = "#dd1 #dd2 #input #value";
+const lineOfHash = document.querySelector().value;
 
 const reg = /#(A-Za-zа-яА-Я)+/;
 const createValidator = () => {
@@ -22,4 +22,4 @@ const validateAllHashTags = (line) => {
   return tokens.every(createValidator());
 };
 
-validateAllHashTags(lineOfHash)
+validateAllHashTags(lineOfHash);

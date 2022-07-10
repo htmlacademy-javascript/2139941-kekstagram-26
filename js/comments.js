@@ -1,5 +1,13 @@
 import { displayElementRemove, displayElementAdd } from './big_picture.js';
 
+const createCounter = (index) => {
+  let counter = index;
+  return () => {
+    const result = counter;
+    counter += 5;
+    return result;
+  };
+};
 const createRemove = (counter, array) => () => {
   const box = counter();
   if (box < array.length) {
@@ -19,14 +27,6 @@ const createRemove = (counter, array) => () => {
 };
 
 export const displayGroupPhotos = (array) => {
-  const createCounter = (index) => {
-    let counter = index;
-    return () => {
-      const result = counter;
-      counter += 5;
-      return result;
-    };
-  };
   const counter = createCounter(10);
   const hangler = createRemove(counter, array);
   document.querySelector('.comments-loader').addEventListener('click', hangler);
