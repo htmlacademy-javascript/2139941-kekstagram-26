@@ -6,14 +6,11 @@ import { uploadNewImage } from './upload_form.js';
 import { replacingPhotoEffects } from './effects_photo.js';
 import { filterUserPhoto } from './filter.js';
 import { createSlider } from './slider.js';
-const slider = document.querySelector();
+const array = NaN;
+const slider = document.querySelector('.effect-level__slider');
 createSlider(slider);
 
-const array = NaN
-
-
-let arr = filterUserPhoto(array)
-
+const arr = filterUserPhoto(array);
 
 document
   .querySelector('.pictures.container')
