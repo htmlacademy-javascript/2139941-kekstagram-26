@@ -21,3 +21,5 @@ export const generateArray = (length, generator) => Array.from({length},(_,ix) =
 export const isEscapeKey = (evt) => {
   return evt.key === 'Escape';
 };
+
+export const randomNumberFilter = () => { return Math.random() - 0, 5 }
