@@ -5,6 +5,10 @@ import { displayBigPhoto } from './big_picture.js';
 import { uploadNewImage } from './upload_form.js';
 import { replacingPhotoEffects } from './effects_photo.js';
 import { filterUserPhoto } from './filter.js';
+import { createSlider } from './slider.js';
+const slider = document.querySelector();
+createSlider(slider);
+
 const array = NaN
 
 
