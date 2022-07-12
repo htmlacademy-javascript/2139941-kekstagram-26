@@ -1,6 +1,8 @@
 import { randomNumberFilter } from './util.js';
 import { displayUserPhotos } from './picture.js';
 import { displayBigPhoto } from './big_picture.js';
+import { debounce } from './debouncing.js';
+const RERENDER_DELAY = 10000;
 const filterMostPopular = (array1) => {
   const array = [...array1];
   const sort = array.sort((a, b) => a.comments.length > b.comments.length ? 1 : -1);
@@ -35,20 +37,25 @@ export const filterUserPhoto = (array) => {
   return arr;
 };
 
+const loadingFilteredImages = (array) => {
+  document.querySelectorAll('.picture').forEach((e) => e.remove());
+  const a = filterUserPhoto(array);
+  document
+    .querySelector('.pictures.container')
+    .append(displayUserPhotos(a,
+      document.querySelector('#picture')
+    ));
+  displayBigPhoto(a);
+};
+
 export const test = (photos) => {
   const filters = document.querySelectorAll('.img-filters__button');
   for (let i = 0; i < filter.length; i++) {
     filters[i].addEventListener('click', () => {
       filters.forEach((n) => n.classList.remove('img-filters__button--active'));
       document.querySelector(filter[i]).classList.add('img-filters__button--active');
-      document.querySelectorAll('.picture').forEach((e) => e.remove());
-      const a = filterUserPhoto(photos);
-      document
-        .querySelector('.pictures.container')
-        .append(displayUserPhotos(a,
-          document.querySelector('#picture')
-        ));
-      displayBigPhoto(a);
+      debounce(loadingFilteredImages(photos),RERENDER_DELAY);
     });
   }
 };
+

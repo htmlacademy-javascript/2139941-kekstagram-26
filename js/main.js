@@ -6,6 +6,7 @@ import { filterUserPhoto, test } from './filter.js';
 import { createSlider } from './slider.js';
 import { sentDate } from './feth.js';
 import { handlingError, clearFormAfterSubmit } from './mistakes.js';
+
 const qetDate = () => {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => {
