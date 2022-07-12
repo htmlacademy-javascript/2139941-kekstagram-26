@@ -20,4 +20,4 @@ export const generateArray = (length, generator) => Array.from({length},(_,ix) =
 
 export const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export const randomNumberFilter = () => (Math.random() - 0, 5);
+export const randomNumberFilter = () => (Math.random() - 0.5);

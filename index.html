@@ -59,7 +59,7 @@
                   <!-- Изменение глубины эффекта, накладываемого на изображение -->
                   <fieldset class="img-upload__effect-level  effect-level">
                     <input class="effect-level__value" type="number" step="any" name="effect-level" value="">
-                    <div class="effect-level__slider"></div>
+                    <div class="effect-level__slider hidden"></div>
                   </fieldset>
 
                   <!-- Кнопка для закрытия формы редактирования изображения -->
@@ -117,8 +117,7 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <div class="img-upload__field-wrapper">
-                    <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег"
-                    data-pristine-pattern='/^#[A_Za-zА-Яа-яЁё0-9]{1,19}/' max = '5' > >
+                    <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
                   </div>
                   <div class="img-upload__field-wrapper">
                     <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"
@@ -209,25 +208,34 @@
   </template>
 
   <!-- Сообщение с ошибкой загрузки изображения -->
-  <template id="error">
-    <section class="error">
+    <section class="error hidden" id="error1">
       <div class="error__inner">
         <h2 class="error__title">Ошибка загрузки файла</h2>
-        <button type="button" class="error__button">Загрузить другой файл</button>
+        <button type="button" class="error__button" id="error__button1">Загрузить другой файл</button>
       </div>
     </section>
-  </template>
 
   <!-- Сообщение об успешной загрузке изображения -->
-  <template id="success">
-    <section class="success">
+    <section class="success hidden">
       <div class="success__inner">
         <h2 class="success__title">Изображение успешно загружено</h2>
-        <button type="button" class="success__button">Круто!</button>
+        <button type="button" class="success__button" id="success__button">Круто!</button>
       </div>
     </section>
-  </template>
 
+    <section class="error hidden" id="error2">
+      <div class="error__inner">
+        <h2 class="error__title">Упс, что-то пошло не так.</h2>
+        <button type="button" class="error__button" id="error__button2" onClick="window.location.href=window.location.href">Попробовать еще разок</button>
+      </div>
+    </section>
+
+    <section class="error hidden" id="error3">
+      <div class="error__inner">
+        <h2 class="error__title">Поле хеш-тегов, заполнено не верно.</h2>
+        <button type="button" class="error__button" id="error__button3">Продолжить работать с формой</button>
+      </div>
+    </section>
   <!-- Экран загрузки изображения -->
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>

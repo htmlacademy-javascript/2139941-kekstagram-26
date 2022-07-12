@@ -1,9 +1,8 @@
-const lineOfHash = document.querySelector().value;
-
-const reg = /#(A-Za-zа-яА-Я)+/;
+const reg = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}/;
 const createValidator = () => {
   const alreadySeen = new Set();
   return (token) => {
+    token = token.toUpperCase();
     if (alreadySeen.has(token)) {
       return false;
     }
@@ -12,14 +11,15 @@ const createValidator = () => {
   };
 };
 
-const validateAllHashTags = (line) => {
-  const tokens = line.split(" ");
-  const valid = tokens.length <= 5;
-  if(!valid){
-    return false;
+export const validateAllHashTags = (line) => {
+  if (line === '') { return true;}
+  else {
+    const tokens = line.split(' ');
+    const valid = tokens.length <= 5;
+    if (!valid) {
+      return false;
+    }
+
+    return tokens.every(createValidator());
   }
-
-  return tokens.every(createValidator());
 };
-
-validateAllHashTags(lineOfHash);

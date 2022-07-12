@@ -1,24 +1,36 @@
-fetch('https://26.javascript.pages.academy/kekstagram/data')
-  .then((response) => {
-    if (response.ok) {
-      return response;
-    }
-    throw new Error('a')
-  })
-  .then((response) => response.json())
-  .then((posts) => console.log(posts));
+import { validateAllHashTags } from './pristine.js';
+const workingErrorForm = (status) => {
+  document.querySelector('.img-upload__overlay').classList.add('hidden');
+  document.querySelector(status).classList.remove('hidden');
+};
 
-
-fetch('https://26.javascript.pages.academy/kekstagram/data', {
-  method: 'POST',
-  headers: {},
-  body: JSON.stringify(post)
-})
-  .then((response) => {
-    if (response.ok) {
-      return response;
-    }
-    throw new Error('a');
+const createLoader = () => {
+  fetch('https://26.javascript.pages.academy/kekstagram', {
+    method: 'POST',
+    body: new FormData(document.querySelector('.img-upload__form')),
   })
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+    .then((response) => {
+      if (response.ok) {
+        workingErrorForm('.success');
+      } else {
+        workingErrorForm('#error1');
+      }
+    })
+    .catch(() => {
+      workingErrorForm('#error1');
+    });
+};
+
+export const sentDate = () => {
+  document.querySelector('#upload-select-image').addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    if (validateAllHashTags(document.querySelector('.text__hashtags').value) === false) {
+      workingErrorForm('#error3');
+    }
+    else {
+      document.querySelector('#upload-submit').disabled = true;
+      createLoader();
+    }
+  });
+};
+

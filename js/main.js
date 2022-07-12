@@ -1,24 +1,40 @@
-import { generateArray } from './util.js';
-import { MAX_LENGTH_PHOTOS, createPhotoRecord } from './data.js';
 import { displayUserPhotos } from './picture.js';
 import { displayBigPhoto } from './big_picture.js';
 import { uploadNewImage } from './upload_form.js';
 import { replacingPhotoEffects } from './effects_photo.js';
-import { filterUserPhoto } from './filter.js';
+import { filterUserPhoto, test } from './filter.js';
 import { createSlider } from './slider.js';
-const array = NaN;
+import { sentDate } from './feth.js';
+import { handlingError, clearFormAfterSubmit } from './mistakes.js';
+const qetDate = () => {
+  fetch('https://26.javascript.pages.academy/kekstagram/data')
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      document.querySelector('#error2').classList.remove('hidden');
+    })
+    .then((response) => response.json())
+    .then((photos) => {
+      test(photos);
+      document
+        .querySelector('.pictures.container')
+        .append(displayUserPhotos(filterUserPhoto(photos),
+          document.querySelector('#picture')
+        ));
+      displayBigPhoto(filterUserPhoto(photos));
+    })
+    .catch(() => { document.querySelector('#error2').classList.remove('hidden'); });
+};
+qetDate();
 const slider = document.querySelector('.effect-level__slider');
+
 createSlider(slider);
-
-const arr = filterUserPhoto(array);
-
-document
-  .querySelector('.pictures.container')
-  .append(displayUserPhotos(arr,
-    document.querySelector('#picture')
-  ));
-displayBigPhoto(arr);
+handlingError('#error__button3', '#error3');
+handlingError('#error__button1', '#error1');
 uploadNewImage();
-
+clearFormAfterSubmit();
 replacingPhotoEffects();
+sentDate();
+
 
