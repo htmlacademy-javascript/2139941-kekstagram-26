@@ -51,5 +51,3 @@ export const uploadingBatchPhotos = (array) => {
   }
   return displayGroupPhotos(array);
 };
-
-
