@@ -1,4 +1,7 @@
 import { validateAllHashTags } from './pristine.js';
+import { displayUserPhotos } from './picture.js';
+import { displayBigPhoto  } from './creation_big_picture.js';
+import { filterUserPhoto, test } from './filter.js';
 const workingErrorForm = (status) => {
   document.querySelector('.img-upload__overlay').classList.add('hidden');
   document.querySelector(status).classList.remove('hidden');
@@ -34,3 +37,23 @@ export const sentDate = () => {
   });
 };
 
+export const qetDate = () => {
+  fetch('https://26.javascript.pages.academy/kekstagram/data')
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      document.querySelector('#error2').classList.remove('hidden');
+    })
+    .then((response) => response.json())
+    .then((photos) => {
+      test(photos);
+      document
+        .querySelector('.pictures.container')
+        .append(displayUserPhotos(filterUserPhoto(photos),
+          document.querySelector('#picture')
+        ));
+      displayBigPhoto(filterUserPhoto(photos));
+    })
+    .catch(() => { document.querySelector('#error2').classList.remove('hidden'); });
+};

@@ -21,3 +21,11 @@ export const generateArray = (length, generator) => Array.from({length},(_,ix) =
 export const isEscapeKey = (evt) => evt.key === 'Escape';
 
 export const randomNumberFilter = () => (Math.random() - 0.5);
+
+export const displayElementRemove = (element, display) => {
+  document.querySelector(element).classList.remove(display);
+};
+
+export const displayElementAdd = (element, display) => {
+  document.querySelector(element).classList.add(display);
+};

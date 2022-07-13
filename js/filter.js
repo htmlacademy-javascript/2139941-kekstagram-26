@@ -1,6 +1,6 @@
 import { randomNumberFilter } from './util.js';
 import { displayUserPhotos } from './picture.js';
-import { displayBigPhoto } from './big_picture.js';
+import { displayBigPhoto } from './creation_big_picture.js';
 import { debounce } from './debouncing.js';
 const RERENDER_DELAY = 10000;
 const filterMostPopular = (array1) => {

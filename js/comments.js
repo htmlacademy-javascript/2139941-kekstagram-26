@@ -1,4 +1,4 @@
-import { displayElementRemove, displayElementAdd } from './big_picture.js';
+import { displayElementAdd, displayElementRemove } from './util.js';
 
 const createCounter = (index) => {
   let counter = index;
