@@ -2,7 +2,15 @@ import { randomNumberFilter } from './util.js';
 import { displayUserPhotos } from './picture.js';
 import { displayBigPhoto } from './creation_big_picture.js';
 import { debounce } from './debouncing.js';
-const RERENDER_DELAY = 10000;
+
+const filters = [
+  '#filter-default',
+  '#filter-random',
+  '#filter-discussed',
+];
+
+const RERENDER_DELAY = 500;
+
 const filterMostPopular = (array1) => {
   const array = [...array1];
   const sort = array.sort((a, b) => a.comments.length > b.comments.length ? 1 : -1);
@@ -16,44 +24,39 @@ const filterRandomPhoto = (array1) => {
   return sort;
 };
 
-const filter = [
-  '#filter-default',
-  '#filter-random',
-  '#filter-discussed',
-];
 export const filterUserPhoto = (array) => {
-  let arr = 0;
+  let boxArroy = 0;
   const a = filterRandomPhoto(array);
   const b = filterMostPopular(array);
   if (document.querySelector('#filter-default').classList.contains('img-filters__button--active')) {
-    arr = array;
+    boxArroy = array;
   }
   if (document.querySelector('#filter-random').classList.contains('img-filters__button--active')) {
-    arr = a;
+    boxArroy = a;
   }
   if (document.querySelector('#filter-discussed').classList.contains('img-filters__button--active')) {
-    arr = b;
+    boxArroy = b;
   }
-  return arr;
+  return boxArroy;
 };
 
 const loadingFilteredImages = (array) => {
   document.querySelectorAll('.picture').forEach((e) => e.remove());
-  const a = filterUserPhoto(array);
+  const newArroy = filterUserPhoto(array);
   document
     .querySelector('.pictures.container')
-    .append(displayUserPhotos(a,
+    .append(displayUserPhotos(newArroy,
       document.querySelector('#picture')
     ));
-  displayBigPhoto(a);
+  displayBigPhoto(newArroy);
 };
 
-export const test = (photos) => {
-  const filters = document.querySelectorAll('.img-filters__button');
-  for (let i = 0; i < filter.length; i++) {
-    filters[i].addEventListener('click', () => {
-      filters.forEach((n) => n.classList.remove('img-filters__button--active'));
-      document.querySelector(filter[i]).classList.add('img-filters__button--active');
+export const filteringNewArray = (photos) => {
+  const filter = document.querySelectorAll('.img-filters__button');
+  for (let i = 0; i < filters.length; i++) {
+    filter[i].addEventListener('click', () => {
+      filter.forEach((n) => n.classList.remove('img-filters__button--active'));
+      document.querySelector(filters[i]).classList.add('img-filters__button--active');
       debounce(loadingFilteredImages(photos),RERENDER_DELAY);
     });
   }

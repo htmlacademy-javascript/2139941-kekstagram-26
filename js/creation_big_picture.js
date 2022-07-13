@@ -1,6 +1,6 @@
 import { setImgSrc, setElementText } from './picture.js';
 import { uploadingBatchPhotos } from './comments.js';
-import {addDialogClose} from './close_big_picture.js';
+import { addDialogClose } from './close_big_picture.js';
 import { displayElementAdd, displayElementRemove } from './util.js';
 export let showCommentHangler = null;
 const makeBigPhotoFromItem = (item) => {
