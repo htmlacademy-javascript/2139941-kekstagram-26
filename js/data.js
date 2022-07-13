@@ -46,15 +46,14 @@ const POST_DESCRIPTIONS = [
   'Неуловимый',
 ];
 
-export const MAX_LENGHT_PHOTOS = 25;
+export const MAX_LENGTH_PHOTOS = 25;
 
-const creationNewComment = (index) => {
-  return {
-    id: index * 10000 + generateRandomInteger(1,999),
-    avatar: (`img/avatar-${generateRandomInteger(1, 7)}.svg`),
-    message: gerRandomItem(POST_MESSAGES),
-    name: gerRandomItem(USER_NAMES),
-  };};
+const creationNewComment = (index) => ({
+  id: index * 10000 + generateRandomInteger(1,999),
+  avatar: (`img/avatar-${generateRandomInteger(1, 7)}.svg`),
+  message: gerRandomItem(POST_MESSAGES),
+  name: gerRandomItem(USER_NAMES),
+});
 
 export const createPhotoRecord = (index) => {
   const number = index + 1;
@@ -64,5 +63,5 @@ export const createPhotoRecord = (index) => {
     description:  gerRandomItem(POST_DESCRIPTIONS),
     likes: (generateRandomInteger(15, 201)),
     comments: generateArray(generateRandomInteger(1,25),creationNewComment),
-  }};
+  };};
 
