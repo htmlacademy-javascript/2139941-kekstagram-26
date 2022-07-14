@@ -1,23 +1,17 @@
-import { generateArray } from './util.js';
-import { MAX_LENGTH_PHOTOS, createPhotoRecord } from './data.js';
-import { displayUserPhotos } from './picture.js';
-import { displayBigPhoto } from './big_picture.js';
+import { qetDate } from './fetch.js';
 import { uploadNewImage } from './upload_form.js';
-import { rescalingPhoto } from './photo_resizing.js';
 import { replacingPhotoEffects } from './effects_photo.js';
 import { createSlider } from './slider.js';
-export const array = generateArray(MAX_LENGTH_PHOTOS, createPhotoRecord);
+import { sentDate } from './mistakes.js';
+import { handlingError, clearFormAfterSubmit } from './mistakes.js';
+import { lockButtonEsc } from './close_form.js';
 
-const slider = document.querySelector('.effect-level__slider');
-createSlider(slider);
-document
-  .querySelector('.pictures.container')
-  .append(displayUserPhotos(array,
-    document.querySelector('#picture')
-  ));
-displayBigPhoto(array);
+qetDate();
+createSlider(document.querySelector('.effect-level__slider'));
+handlingError('#error__button3', '#error3');
+handlingError('#error__button1', '#error1');
 uploadNewImage();
-rescalingPhoto(100);
+clearFormAfterSubmit();
 replacingPhotoEffects();
-
-
+sentDate();
+lockButtonEsc();

@@ -1,4 +1,4 @@
-import { dd } from './slider.js';
+import { changeSliderSettings } from './slider.js';
 export const effects = [
   'effects__preview--none',
   'effects__preview--chrome',
@@ -20,7 +20,7 @@ export const replacingPhotoEffects = () => {
     element.addEventListener('click', () => {
       cleaningEffects();
       document.querySelector('.img-upload__preview').classList.add(effects[i]);
-      dd(effects[i]);
+      changeSliderSettings(effects[i]);
     });
   }
 };

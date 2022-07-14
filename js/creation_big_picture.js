@@ -1,30 +1,8 @@
 import { setImgSrc, setElementText } from './picture.js';
-import { isEscapeKey } from './util.js';
 import { uploadingBatchPhotos } from './comments.js';
-
-export const displayElementRemove = (element, display) => {
-  document.querySelector(element).classList.remove(display);
-};
-
-export const displayElementAdd = (element, display) => {
-  document.querySelector(element).classList.add(display);
-};
-
-let removeBigPhoto = null;
-let removeBigPhoto2 = null;
-const closeBigPhoto = () => {
-  document.addEventListener('keydown', removeBigPhoto2);
-};
-
-const closeBigPhoto2 = () => {
-  document.querySelector('.big-picture__cancel').addEventListener('click', removeBigPhoto);
-};
-
-const addDialogClose = () => {
-  closeBigPhoto();
-  closeBigPhoto2();
-};
-
+import { addDialogClose } from './close_big_picture.js';
+import { displayElementAdd, displayElementRemove } from './util.js';
+export let showCommentHangler = null;
 const makeBigPhotoFromItem = (item) => {
   const {
     url,
@@ -56,7 +34,7 @@ const createCollectComment = (template) => (fragment, item) => {
 };
 
 const displayUserComment = (item, template) => item.reduce(createCollectComment(template), document.createDocumentFragment());
-let showCommentHangler = null;
+
 export const displayBigPhoto = (item) => {
   const photoButton = document.querySelectorAll('.picture');
   for (let j = 0; j < photoButton.length; j++) {
@@ -72,26 +50,3 @@ export const displayBigPhoto = (item) => {
     });
   }
 };
-
-const removeEventListener = () => {
-  document.removeEventListener('keydown', removeBigPhoto2);
-  document.querySelector('.big-picture__cancel').removeEventListener('click', removeBigPhoto);
-};
-
-removeBigPhoto = () => {
-  displayElementAdd('.big-picture', 'hidden');
-  displayElementRemove('body', 'modal-open');
-  document.querySelectorAll('.social__comment').forEach((e) => e.remove());
-  if (typeof showCommentHangler === 'function') {
-    showCommentHangler();
-  }
-  removeEventListener();
-};
-
-removeBigPhoto2 = function (evt) {
-  if (isEscapeKey(evt)) {
-    removeBigPhoto();
-  }
-};
-
-

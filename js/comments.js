@@ -1,4 +1,4 @@
-import { displayElementRemove, displayElementAdd } from './big_picture.js';
+import { displayElementAdd, displayElementRemove } from './util.js';
 
 const createCounter = (index) => {
   let counter = index;
@@ -8,7 +8,6 @@ const createCounter = (index) => {
     return result;
   };
 };
-
 const createRemove = (counter, array) => () => {
   const box = counter();
   if (box < array.length) {
@@ -52,5 +51,3 @@ export const uploadingBatchPhotos = (array) => {
   }
   return displayGroupPhotos(array);
 };
-
-
