@@ -1,5 +1,4 @@
 let slider = 0;
-
 export const createSlider = (element) => {
   slider = element;
   noUiSlider.create(slider, {
