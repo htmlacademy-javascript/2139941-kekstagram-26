@@ -51,13 +51,15 @@ const loadingFilteredImages = (array) => {
   displayBigPhoto(newArroy);
 };
 
+const delayLoadingFilteredImages = debounce(loadingFilteredImages,RERENDER_DELAY);
+
 export const filteringNewArray = (photos) => {
   const filter = document.querySelectorAll('.img-filters__button');
   for (let i = 0; i < filters.length; i++) {
     filter[i].addEventListener('click', () => {
       filter.forEach((n) => n.classList.remove('img-filters__button--active'));
       document.querySelector(filters[i]).classList.add('img-filters__button--active');
-      debounce(loadingFilteredImages(photos),RERENDER_DELAY);
+      delayLoadingFilteredImages(photos);
     });
   }
 };

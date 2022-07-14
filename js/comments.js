@@ -8,6 +8,7 @@ const createCounter = (index) => {
     return result;
   };
 };
+
 const createRemove = (counter, array) => () => {
   const box = counter();
   if (box < array.length) {
