@@ -13,6 +13,7 @@ export const cleaningEffects = () => {
     document.querySelector('.img-upload__preview').classList.remove(effects[i]);
   }
 };
+
 export const replacingPhotoEffects = () => {
   const elements = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effects.length; i++) {
