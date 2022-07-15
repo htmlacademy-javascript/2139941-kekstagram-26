@@ -1,38 +1,36 @@
 import { isEscapeKey } from './util.js';
 import { displayElementAdd, displayElementRemove } from './util.js';
-import {showCommentHangler} from './creation_big_picture.js';
-let removeBigPhoto = null;
-let removeBigPhoto2 = null;
+let bigPhotoClickHandler = null;
+let BigPhotoKeydownHandler = null;
 
 const closeBigPhoto = () => {
-  document.addEventListener('keydown', removeBigPhoto2);
+  document.addEventListener('keydown', BigPhotoKeydownHandler);
 };
 
 const closeBigPhoto2 = () => {
-  document.querySelector('.big-picture__cancel').addEventListener('click', removeBigPhoto);
+  document.querySelector('.big-picture__cancel').addEventListener('click', bigPhotoClickHandler);
 };
 export const addDialogClose = () => {
   closeBigPhoto();
   closeBigPhoto2();
 };
 
-const removeEventListener = () => {
-  document.removeEventListener('keydown', removeBigPhoto2);
-  document.querySelector('.big-picture__cancel').removeEventListener('click', removeBigPhoto);
+const removeEventKeydown = () => {
+  document.removeEventListener('keydown', BigPhotoKeydownHandler);
 };
-
-removeBigPhoto = () => {
+const removeEventClick = () => {
+  document.querySelector('.big-picture__cancel').removeEventListener('click', bigPhotoClickHandler);
+};
+bigPhotoClickHandler = () => {
   displayElementAdd('.big-picture', 'hidden');
   displayElementRemove('body', 'modal-open');
   document.querySelectorAll('.social__comment').forEach((e) => e.remove());
-  if (typeof showCommentHangler === 'function') {
-    showCommentHangler();
-  }
-  removeEventListener();
+  removeEventKeydown();
+  removeEventClick();
 };
 
-removeBigPhoto2 = function (evt) {
+BigPhotoKeydownHandler = function (evt) {
   if (isEscapeKey(evt)) {
-    removeBigPhoto();
+    bigPhotoClickHandler();
   }
 };

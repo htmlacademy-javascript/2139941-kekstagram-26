@@ -8,18 +8,18 @@ export const effects = [
   'effects__preview--heat',
 ];
 
-export const cleaningEffects = () => {
+export const cleanEffects = () => {
   for (let i = 0; i < effects.length; i++) {
     document.querySelector('.img-upload__preview').classList.remove(effects[i]);
   }
 };
 
-export const replacingPhotoEffects = () => {
+export const replacPhotoEffects = () => {
   const elements = document.querySelectorAll('.effects__radio');
   for (let i = 0; i < effects.length; i++) {
     const element = elements[i];
     element.addEventListener('click', () => {
-      cleaningEffects();
+      cleanEffects();
       document.querySelector('.img-upload__preview').classList.add(effects[i]);
       changeSliderSettings(effects[i]);
     });

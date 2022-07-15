@@ -1,17 +1,18 @@
-import { qetDate } from './fetch.js';
+import { getDate } from './fetch.js';
 import { uploadNewImage } from './upload_form.js';
-import { replacingPhotoEffects } from './effects_photo.js';
+import { replacPhotoEffects } from './effects_photo.js';
 import { createSlider } from './slider.js';
 import { sentDate } from './mistakes.js';
-import { handlingError, clearFormAfterSubmit } from './mistakes.js';
-import { lockButtonEsc } from './close_form.js';
+import { sendError, clearFormAfterSubmit } from './mistakes.js';
+import { lockButtonEsc } from './button_lock.js';
 
-qetDate();
-createSlider(document.querySelector('.effect-level__slider'));
-handlingError('#error__button3', '#error3');
-handlingError('#error__button1', '#error1');
+getDate();
+createSlider();
+sendError('#error__button3', '#error3');
+sendError('#error__button1', '#error1');
 uploadNewImage();
 clearFormAfterSubmit();
-replacingPhotoEffects();
+replacPhotoEffects();
 sentDate();
 lockButtonEsc();
+
