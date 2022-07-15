@@ -1,26 +1,7 @@
-export function generateRandomInteger (from, to) {
-  if(!Number.isInteger(from)){
-    throw new Error(`not a number ${from}`);
-  }
-  if(!Number.isInteger(to)){
-    throw new Error(`not a number ${to}`);
-  }
-  if(from < 0){
-    throw new Error(`from must be positive ${from}`);
-  }
-  if(from > to){
-    throw new Error(`from must be in order ${from},${to}`);
-  }
-  return Math.floor(Math.random() * (to - from) + from);
-}
-
-export const gerRandomItem = (items) => items[generateRandomInteger(0, items.length)];
-
-export const generateArray = (length, generator) => Array.from({length},(_,ix) => generator(ix));
-
+const NUMBER_FOR_RANDOM = 0.5;
 export const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export const randomNumberFilter = () => (Math.random() - 0.5);
+export const randomNumberFilter = () => (Math.random() - NUMBER_FOR_RANDOM);
 
 export const displayElementRemove = (element, display) => {
   document.querySelector(element).classList.remove(display);

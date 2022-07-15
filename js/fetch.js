@@ -1,7 +1,9 @@
-import { workingErrorForm } from './mistakes.js';
+import { workErrorForm } from './mistakes.js';
 import { displayUserPhotos } from './picture.js';
 import { displayBigPhoto  } from './creation_big_picture.js';
 import { filterUserPhoto, filteringNewArray } from './filter.js';
+import { closeErrorWindow, closeSuccessWindow} from './close_eauxiliary_windows.js';
+
 
 export const createLoader = () => {
   fetch('https://26.javascript.pages.academy/kekstagram', {
@@ -10,17 +12,20 @@ export const createLoader = () => {
   })
     .then((response) => {
       if (response.ok) {
-        workingErrorForm('.success');
+        workErrorForm('.success');
+        closeSuccessWindow();
       } else {
-        workingErrorForm('#error1');
+        workErrorForm('#error1');
+        closeErrorWindow();
       }
     })
     .catch(() => {
-      workingErrorForm('#error1');
+      workErrorForm('#error1');
+      closeErrorWindow();
     });
 };
 
-export const qetDate = () => {
+export const getDate = () => {
   fetch('https://26.javascript.pages.academy/kekstagram/data')
     .then((response) => {
       if (response.ok) {
