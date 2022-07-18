@@ -30,10 +30,10 @@ const createRemove = (counter, array) => () => {
 
 export const displayGroupComments = (array) => {
   const counter = createCounter(INITIAL_NUMBER_COMMENTS);
-  const commentClickHangler = createRemove(counter, array);
-  document.querySelector('.comments-loader').addEventListener('click', commentClickHangler);
+  const commentClickHandler = createRemove(counter, array);
+  document.querySelector('.comments-loader').addEventListener('click', commentClickHandler);
   return () => {
-    document.querySelector('.comments-loader').removeEventListener('click', commentClickHangler);
+    document.querySelector('.comments-loader').removeEventListener('click', commentClickHandler);
   };
 };
 

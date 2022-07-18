@@ -3,7 +3,6 @@ import { cleanEffects } from './effects_photo.js';
 import { isEscapeKey } from './util.js';
 import { displayElementAdd, displayElementRemove } from './util.js';
 
-
 let editFormKeydownHandler = null;
 let editFormClickHandler = null;
 

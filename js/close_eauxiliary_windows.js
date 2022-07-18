@@ -5,7 +5,7 @@ const error = document.querySelector('#error1');
 const success = document.querySelector('.success');
 let errorClickHandler = null;
 let errorKeydownHandler = null;
-let successClickHandle = null;
+let successClickHandler = null;
 let successKeydownHandler = null;
 
 const closeErrorKeydown = () => {
@@ -49,14 +49,14 @@ const closeSuccessKeydown = () => {
   document.addEventListener('keydown', successKeydownHandler);
 };
 const closeSuccessClick = () => {
-  document.addEventListener('click', successClickHandle);
+  document.addEventListener('click', successClickHandler);
 };
 
 const removeSuccessKeydown = () => {
   document.removeEventListener('keydown', successKeydownHandler);
 };
 const removeSuccessClick = () => {
-  document.removeEventListener('click', successClickHandle);
+  document.removeEventListener('click', successClickHandler);
 };
 
 successKeydownHandler = () => {
@@ -66,7 +66,7 @@ successKeydownHandler = () => {
   }
 };
 
-successClickHandle = (evt) => {
+successClickHandler = (evt) => {
   if (evt.target === success) {
     success.classList.add('hidden');
     removeSuccessClick();

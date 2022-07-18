@@ -38,7 +38,7 @@ export const filterUserPhoto = (array) => {
   return filterUsers;
 };
 
-const loadingFilteredImages = (array) => {
+const loadFilteredImages = (array) => {
   document.querySelectorAll('.picture').forEach((element) => element.remove());
   const filterUsers = filterUserPhoto(array);
   document
@@ -49,9 +49,9 @@ const loadingFilteredImages = (array) => {
   displayBigPhoto(filterUsers);
 };
 
-const delayLoadingFilteredImages = debounce(loadingFilteredImages,RERENDER_DELAY);
+const delayLoadingFilteredImages = debounce(loadFilteredImages,RERENDER_DELAY);
 
-export const filteringNewArray = (photos) => {
+export const filterNewArray = (photos) => {
   const filter = document.querySelectorAll('.img-filters__button');
   for (let i = 0; i < filters.length; i++) {
     filter[i].addEventListener('click', () => {

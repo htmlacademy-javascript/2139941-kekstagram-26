@@ -1,20 +1,20 @@
 import { removeEventKeydown, closeEditWindow } from './close_form.js';
-const hashtagFocusHangler = () => {
+const hashtagFocusHandler = () => {
   document.querySelector('.text__hashtags').addEventListener('focus',removeEventKeydown);
 };
-const hashtagBlurHangler = () => {
+const hashtagBlurHandler = () => {
   document.querySelector('.text__hashtags').addEventListener('blur',closeEditWindow);
 };
-const descriptionFocusHangler = () => {
+const descriptionFocusHandler = () => {
   document.querySelector('.text__description').addEventListener('focus',removeEventKeydown);
 };
-const descriptionBlurHangler = () => {
+const descriptionBlurHandler = () => {
   document.querySelector('.text__description').addEventListener('blur',closeEditWindow);
 };
 
 export const lockButtonEsc = () => {
-  hashtagFocusHangler();
-  hashtagBlurHangler();
-  descriptionFocusHangler();
-  descriptionBlurHangler();
+  hashtagFocusHandler();
+  hashtagBlurHandler();
+  descriptionFocusHandler();
+  descriptionBlurHandler();
 };
