@@ -1,10 +1,10 @@
 import { isEscapeKey } from './util.js';
 import { displayElementAdd, displayElementRemove } from './util.js';
 let bigPhotoClickHandler = null;
-let BigPhotoKeydownHandler = null;
+let bigPhotoKeydownHandler = null;
 
 const closeBigPhoto = () => {
-  document.addEventListener('keydown', BigPhotoKeydownHandler);
+  document.addEventListener('keydown', bigPhotoKeydownHandler);
 };
 
 const closeBigPhoto2 = () => {
@@ -16,7 +16,7 @@ export const addDialogClose = () => {
 };
 
 const removeEventKeydown = () => {
-  document.removeEventListener('keydown', BigPhotoKeydownHandler);
+  document.removeEventListener('keydown', bigPhotoKeydownHandler);
 };
 const removeEventClick = () => {
   document.querySelector('.big-picture__cancel').removeEventListener('click', bigPhotoClickHandler);
@@ -29,7 +29,7 @@ bigPhotoClickHandler = () => {
   removeEventClick();
 };
 
-BigPhotoKeydownHandler = function (evt) {
+bigPhotoKeydownHandler = function (evt) {
   if (isEscapeKey(evt)) {
     bigPhotoClickHandler();
   }

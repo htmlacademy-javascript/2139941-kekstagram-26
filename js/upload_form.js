@@ -1,5 +1,5 @@
 import { displayElementAdd, displayElementRemove } from './util.js';
-import { rescalingPhoto, setDefaultSettingsFilter } from './photo_resizing.js';
+import { rescalPhoto, setDefaultSettingsFilter } from './photo_resizing.js';
 import {closeEditForm} from './close_form.js';
 import {STANDARD_FILTER_VALUE} from './mistakes.js';
 const  INITIAL_PHOTO_SIZE = 100;
@@ -9,7 +9,7 @@ const openUploadForm = () => {
   displayElementAdd('body', 'modal-open');
   closeEditForm();
   setDefaultSettingsFilter(STANDARD_FILTER_VALUE);
-  rescalingPhoto(INITIAL_PHOTO_SIZE);
+  rescalPhoto(INITIAL_PHOTO_SIZE);
 };
 
 const formChangeHandler = (evt) => {

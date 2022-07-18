@@ -1,7 +1,7 @@
 import { workErrorForm } from './mistakes.js';
 import { displayUserPhotos } from './picture.js';
 import { displayBigPhoto  } from './creation_big_picture.js';
-import { filterUserPhoto, filteringNewArray } from './filter.js';
+import { filterUserPhoto, filterNewArray } from './filter.js';
 import { closeErrorWindow, closeSuccessWindow} from './close_eauxiliary_windows.js';
 
 
@@ -35,7 +35,7 @@ export const getDate = () => {
     })
     .then((response) => response.json())
     .then((photos) => {
-      filteringNewArray(photos);
+      filterNewArray(photos);
       document
         .querySelector('.pictures.container')
         .append(displayUserPhotos(filterUserPhoto(photos),
